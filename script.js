@@ -26,6 +26,7 @@ if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const desktopQuery = matchMedia('(min-width: 761px)');
   let isSectionTweening = false;
   let scrollSettleTimer;
+  let lockedSection = null;
 
   const closestSectionIndex = () => sectionTargets.reduce((closest, section, index) => {
     const nextDistance = Math.abs(section.getBoundingClientRect().top);
@@ -42,7 +43,10 @@ if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       duration: 1.12,
       ease: 'power2.inOut',
       overwrite: 'auto',
-      onComplete: () => { isSectionTweening = false; }
+      onComplete: () => {
+        isSectionTweening = false;
+        lockedSection = target;
+      }
     });
   };
 
@@ -56,6 +60,11 @@ if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
   window.addEventListener('scroll', () => {
     if (!desktopQuery.matches || isSectionTweening) return;
+    if (lockedSection) {
+      const departure = Math.abs(lockedSection.getBoundingClientRect().top);
+      if (departure < innerHeight * .32) return;
+      lockedSection = null;
+    }
     clearTimeout(scrollSettleTimer);
     scrollSettleTimer = setTimeout(settleToNearbySection, 230);
   }, { passive: true });
