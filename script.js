@@ -15,9 +15,59 @@ document.querySelector('#match-list').innerHTML = matches.map(([name, type, deta
 document.querySelector('#learn-list').innerHTML = learning.map(([title, detail, source, url]) => `<article class="story reveal"><p class="story-source">${source}</p><h3>${title}</h3><p>${detail}</p><a href="${url}">阅读文章 <span aria-hidden="true">↗</span></a></article>`).join('');
 
 if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (window.ScrollToPlugin) gsap.registerPlugin(window.ScrollToPlugin);
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
   tl.from('.mast', { y: -16, autoAlpha: 0, duration: .45 })
     .from('.hero-copy > *', { y: 24, autoAlpha: 0, stagger: .1, duration: .65 }, '<.15')
     .from('.hero-court', { scale: .96, autoAlpha: 0, duration: .7 }, '<.1');
   gsap.to('.ball', { x: 18, y: -12, duration: 2.4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+  const sectionTargets = [...document.querySelectorAll('#matches, #learn, #gear, #edits')];
+  const desktopQuery = matchMedia('(min-width: 761px)');
+  let wheelDistance = 0;
+  let wheelDirection = 0;
+  let isSectionTweening = false;
+
+  const closestSectionIndex = () => sectionTargets.reduce((closest, section, index) => {
+    const nextDistance = Math.abs(section.getBoundingClientRect().top);
+    const closestDistance = Math.abs(sectionTargets[closest].getBoundingClientRect().top);
+    return nextDistance < closestDistance ? index : closest;
+  }, 0);
+
+  const moveToSection = (index) => {
+    const target = sectionTargets[Math.max(0, Math.min(index, sectionTargets.length - 1))];
+    if (!target || isSectionTweening) return;
+    isSectionTweening = true;
+    gsap.to(window, {
+      scrollTo: { y: target, offsetY: 0 },
+      duration: 1.12,
+      ease: 'power2.inOut',
+      overwrite: 'auto',
+      onComplete: () => { isSectionTweening = false; }
+    });
+  };
+
+  window.addEventListener('wheel', (event) => {
+    if (!desktopQuery.matches || event.ctrlKey || isSectionTweening) return;
+    const direction = Math.sign(event.deltaY);
+    if (!direction) return;
+    if (direction !== wheelDirection) wheelDistance = 0;
+    wheelDirection = direction;
+    wheelDistance += Math.abs(event.deltaY);
+    if (wheelDistance < 72) return;
+    event.preventDefault();
+    wheelDistance = 0;
+    const current = closestSectionIndex();
+    const beforeFirstSection = scrollY < sectionTargets[0].offsetTop - innerHeight * .35;
+    moveToSection(direction > 0 ? (beforeFirstSection ? 0 : current + 1) : current - 1);
+  }, { passive: false });
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target || !desktopQuery.matches) return;
+      event.preventDefault();
+      gsap.to(window, { scrollTo: { y: target, offsetY: 0 }, duration: 1.12, ease: 'power2.inOut', overwrite: 'auto' });
+    });
+  });
 }

@@ -1,7 +1,6 @@
-/* Root scrolling is owned by html, so snapping must live here rather than body. */
-html{scroll-snap-type:y mandatory;scroll-padding-top:0}
-body{scroll-snap-type:none}
-.snap-section{scroll-snap-align:start;scroll-snap-stop:always}
+/* GSAP owns section-to-section movement; native scroll snapping stays disabled. */
+html,body{scroll-snap-type:none}
+.snap-section{scroll-snap-align:none;scroll-snap-stop:normal}
 .section-head h2,.feature-match h3,.gear h3,.story h3,.edits h2{font-family:'Noto Sans SC',sans-serif;letter-spacing:-.025em;line-height:1.16}
 .edits h2{max-width:13ch;line-height:1.12;letter-spacing:-.02em}
 .story-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.story{min-height:275px}
