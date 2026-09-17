@@ -1,0 +1,31 @@
+<style>
+  .zq { --ink:#0c0c0b;--paper:#f4f2ed;--line:#d8d5cf;--lime:#c9ef45;--soft:#e8e5df; background:var(--paper);color:var(--ink);font-family:Arial,sans-serif;border:1px solid var(--line);min-height:330px;overflow:hidden; }
+  .zq *{box-sizing:border-box}.zq .top{height:27px;padding:9px 10px;border-bottom:1px solid var(--line);font-size:7px;letter-spacing:.12em;text-transform:uppercase;display:flex;justify-content:space-between}.zq .grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:48px;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:100% 48px,calc(100% / 6) 100%}.zq .cell{padding:9px;min-width:0}.zq .hero{font-size:clamp(22px,3.2vw,39px);line-height:.82;letter-spacing:-.08em;font-weight:500}.zq .micro{font-size:7px;line-height:1.25;text-transform:uppercase;letter-spacing:.04em}.zq .lime{background:var(--lime)}.zq .ink{background:var(--ink);color:var(--paper)}.zq .photo{background:linear-gradient(145deg,#bcbab5,#6d6b67);position:relative}.zq .photo:after{content:'MATCH / PLAY / MOVE';color:#fff;font-size:7px;letter-spacing:.1em;position:absolute;bottom:10px;left:10px}.zq .row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--ink);padding:4px 0;font-size:8px}.zq .n{font-size:30px;letter-spacing:-.1em;line-height:.8}.zq .arrow{font-size:15px;line-height:1}.zq .label{font-size:7px;letter-spacing:.1em;text-transform:uppercase}.cards{grid-template-columns:repeat(3,minmax(0,1fr))!important}.card-body h3{margin-bottom:7px}@media(max-width:880px){.cards{grid-template-columns:1fr!important}}
+</style>
+
+<h2>首页叙事：三种可行结构</h2>
+<p class="subtitle">都保留“高端俱乐部 + 知识赛事优先 + Warping Point 装备”。我的建议是 A，它最贴近你已经选定的融合方向。</p>
+
+<div class="cards">
+  <div class="card" data-choice="club-journal" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="zq"><div class="top"><span>众祺匹克球俱乐部</span><span>全球赛事 / 装备</span></div><div class="grid">
+      <div class="cell" style="grid-column:span 4;grid-row:span 2"><div class="hero">THE CLUB<br>IS IN PLAY</div></div><div class="cell lime" style="grid-column:span 2;grid-row:span 2"><div class="micro">成人玩家的<br>匹克球生活方式</div></div>
+      <div class="cell photo" style="grid-column:span 3;grid-row:span 2"></div><div class="cell" style="grid-column:span 3;grid-row:span 2"><div class="label">现在关注</div><div class="row">全球重点赛事 <span>→</span></div><div class="row">从零理解匹克球 <span>→</span></div><div class="row">本周技巧 <span>→</span></div></div>
+      <div class="cell ink" style="grid-column:span 2"><div class="micro">Warping Point<br>Paddles</div></div><div class="cell" style="grid-column:span 4"><div class="micro">装备栏目作为“专业选择”收束在内容之后</div></div>
+    </div></div></div>
+    <div class="card-body"><h3>A · 俱乐部期刊 <span class="label">推荐</span></h3><p>先给用户归属感，再用赛事与知识建立回访理由；装备区像一本“编辑精选”。适合长久成长为有品位的内容品牌。</p></div>
+  </div>
+  <div class="card" data-choice="match-desk" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="zq"><div class="top"><span>众祺 / match desk</span><span>09.2026</span></div><div class="grid">
+      <div class="cell lime" style="grid-column:span 2;grid-row:span 3"><div class="n">07</div><div class="micro" style="margin-top:34px">本月<br>重点赛事</div></div><div class="cell" style="grid-column:span 4;grid-row:span 2"><div class="hero">THE GLOBAL<br>COURT REPORT</div></div><div class="cell ink" style="grid-column:span 2"><div class="micro">赛事日历<br>即将开赛</div></div><div class="cell photo" style="grid-column:span 2"></div><div class="cell" style="grid-column:span 2"><div class="micro">规则 / 技巧<br>新手到进阶</div></div><div class="cell" style="grid-column:span 6;grid-row:span 2"><div class="row">赛事观察：本周该看的三场对决 <span>→</span></div><div class="row">球拍档案：Warping Point 型号导览 <span>→</span></div><div class="row">众祺俱乐部：下一次活动 <span>→</span></div></div>
+    </div></div></div>
+    <div class="card-body"><h3>B · 赛事编辑部</h3><p>把全球赛事放在最强的第一屏，俱乐部成为策展者。专业感最强，适合资讯更新非常频繁的运营节奏。</p></div>
+  </div>
+  <div class="card" data-choice="gear-society" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="zq"><div class="top"><span>众祺 pickleball society</span><span>join the play</span></div><div class="grid">
+      <div class="cell" style="grid-column:span 3;grid-row:span 3"><div class="hero">FIND YOUR<br>PACE</div><div class="micro" style="margin-top:24px">比赛 · 技巧 · 装备<br>与同频的人一起进阶</div></div><div class="cell photo" style="grid-column:span 3;grid-row:span 3"></div><div class="cell lime" style="grid-column:span 3"><div class="micro">Paddle selection<br>Warping Point</div></div><div class="cell ink" style="grid-column:span 3"><div class="micro">CLUB EDITS<br>周边即将推出</div></div><div class="cell" style="grid-column:span 6;grid-row:span 2"><div class="row">了解匹克球 <span>→</span></div><div class="row">全球赛事一览 <span>→</span></div><div class="row">为你的打法选择球拍 <span>→</span></div></div>
+    </div></div></div>
+    <div class="card-body"><h3>C · 装备社群</h3><p>氛围最潮流、产品感最强；适合未来销售扩张，但会略微削弱“知识与赛事优先”的第一印象。</p></div>
+  </div>
+</div>
+<p class="subtitle">点击一个结构，或说「A 的上半部 + B 的赛事栏目」。</p>

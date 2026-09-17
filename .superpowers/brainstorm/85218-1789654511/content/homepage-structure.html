@@ -1,0 +1,58 @@
+<style>
+  .zq-board { --ink:#101010; --paper:#f5f3ef; --line:#d8d4cd; --acid:#c5f04a; color:var(--ink); font-family:Arial,sans-serif; background:var(--paper); border:1px solid var(--line); }
+  .zq-title { padding:22px 24px 8px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; }
+  .zq-grid { display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:64px; border-top:1px solid var(--line); background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px); background-size:100% 64px,calc(100% / 6) 100%; }
+  .zq-cell { position:relative; padding:14px; }
+  .zq-big { font-size:clamp(27px,4vw,52px); font-weight:500; letter-spacing:-.07em; line-height:.87; }
+  .zq-small { font-size:10px; line-height:1.2; letter-spacing:.04em; text-transform:uppercase; }
+  .zq-acid { background:var(--acid); }
+  .zq-block { background:var(--ink); color:var(--paper); }
+  .zq-rule { border-top:1px solid var(--ink); padding-top:6px; }
+  .zq-dot { width:10px;height:10px;background:var(--acid);border-radius:50%;display:inline-block; }
+  .zq-tab { display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--ink);font-size:12px;padding:5px 0; }
+  .zq-num { font-size:37px;line-height:.8;letter-spacing:-.08em; }
+  .zq-caption { font-size:9px; text-transform:uppercase; line-height:1.25; }
+  .zq-arrow { font-size:24px; line-height:1; }
+  @media (max-width:700px) { .cards { grid-template-columns:1fr!important; } }
+</style>
+
+<h2>众祺匹克球俱乐部：首页的内容重心</h2>
+<p class="subtitle">两种都沿用你选定的「编辑感 × 高端运动俱乐部 × 潮流社群」；区别在于访客进入后先被什么吸引。</p>
+
+<div class="cards">
+  <div class="card" data-choice="knowledge-first" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="zq-board">
+        <div class="zq-title">A · 知识为先</div>
+        <div class="zq-grid">
+          <div class="zq-cell" style="grid-column:span 4;grid-row:span 2"><div class="zq-big">PLAY<br>SMARTER</div></div>
+          <div class="zq-cell zq-acid" style="grid-column:span 2;grid-row:span 2"><div class="zq-small">众祺匹克球<br><br>从第一拍开始，进入更好的比赛。</div></div>
+          <div class="zq-cell" style="grid-column:span 2"><span class="zq-dot"></span><div class="zq-caption" style="margin-top:12px">基础知识</div></div>
+          <div class="zq-cell zq-block" style="grid-column:span 2"><div class="zq-caption">本周赛事<br>赛程 / 报名</div></div>
+          <div class="zq-cell" style="grid-column:span 2"><div class="zq-arrow">↓</div><div class="zq-caption">技巧专栏</div></div>
+          <div class="zq-cell" style="grid-column:span 6;grid-row:span 2"><div class="zq-tab"><span>01 · 入门：理解匹克球</span><span>→</span></div><div class="zq-tab"><span>02 · 赛事：本月上场计划</span><span>→</span></div><div class="zq-tab"><span>03 · 装备：球拍选择指南</span><span>→</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body"><h3>A · 内容主场</h3><p>首屏先是“匹克球知识与本周赛事”。建立专业可信度后，再引到装备代理和未来周边。适合长期做资讯与搜索流量。</p></div>
+  </div>
+
+  <div class="card" data-choice="club-first" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="zq-board">
+        <div class="zq-title">B · 俱乐部为先</div>
+        <div class="zq-grid">
+          <div class="zq-cell zq-acid" style="grid-column:span 2;grid-row:span 3"><div class="zq-num">01</div><div class="zq-caption" style="margin-top:34px">众祺<br>匹克球俱乐部</div></div>
+          <div class="zq-cell" style="grid-column:span 4;grid-row:span 2"><div class="zq-big">COME<br>PLAY WITH US</div></div>
+          <div class="zq-cell zq-block" style="grid-column:span 2"><div class="zq-caption">会员活动<br>即将开启</div></div>
+          <div class="zq-cell" style="grid-column:span 2"><div class="zq-small zq-rule">赛事日历<br>每周更新</div></div>
+          <div class="zq-cell" style="grid-column:span 2"><div class="zq-small zq-rule">PADDLES<br>代理装备</div></div>
+          <div class="zq-cell" style="grid-column:span 4;grid-row:span 2"><div class="zq-tab"><span>会员社群 · 训练与约球</span><span>→</span></div><div class="zq-tab"><span>赛事与活动 · 一起上场</span><span>→</span></div><div class="zq-tab"><span>专业装备 · 选择你的球拍</span><span>→</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body"><h3>B · 社群主场</h3><p>首屏先塑造“高端成人俱乐部”的归属感，随后让用户进入活动、赛事、知识和装备。更强会员感，也更便于未来延展线下服务。</p></div>
+  </div>
+</div>
+
+<p class="subtitle">点击你更想要的结构。你也可以说“以 A 为主、借 B 的会员气质”。</p>
