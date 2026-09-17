@@ -24,9 +24,8 @@ if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
   const sectionTargets = [...document.querySelectorAll('#matches, #learn, #gear, #edits')];
   const desktopQuery = matchMedia('(min-width: 761px)');
-  let wheelDistance = 0;
-  let wheelDirection = 0;
   let isSectionTweening = false;
+  let scrollSettleTimer;
 
   const closestSectionIndex = () => sectionTargets.reduce((closest, section, index) => {
     const nextDistance = Math.abs(section.getBoundingClientRect().top);
@@ -47,20 +46,19 @@ if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     });
   };
 
-  window.addEventListener('wheel', (event) => {
-    if (!desktopQuery.matches || event.ctrlKey || isSectionTweening) return;
-    const direction = Math.sign(event.deltaY);
-    if (!direction) return;
-    if (direction !== wheelDirection) wheelDistance = 0;
-    wheelDirection = direction;
-    wheelDistance += Math.abs(event.deltaY);
-    if (wheelDistance < 72) return;
-    event.preventDefault();
-    wheelDistance = 0;
-    const current = closestSectionIndex();
-    const beforeFirstSection = scrollY < sectionTargets[0].offsetTop - innerHeight * .35;
-    moveToSection(direction > 0 ? (beforeFirstSection ? 0 : current + 1) : current - 1);
-  }, { passive: false });
+  const settleToNearbySection = () => {
+    if (!desktopQuery.matches || isSectionTweening) return;
+    const target = sectionTargets[closestSectionIndex()];
+    const distance = Math.abs(target.getBoundingClientRect().top);
+    if (distance > innerHeight * .18) return;
+    moveToSection(sectionTargets.indexOf(target));
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!desktopQuery.matches || isSectionTweening) return;
+    clearTimeout(scrollSettleTimer);
+    scrollSettleTimer = setTimeout(settleToNearbySection, 230);
+  }, { passive: true });
 
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (event) => {
