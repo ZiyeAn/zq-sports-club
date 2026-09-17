@@ -1,6 +1,8 @@
-/* Section pacing overrides kept after the base stylesheet. */
-.hero.snap-section{min-height:100svh}
-.intro.snap-section{min-height:100svh;align-items:center}
-.edits.snap-section{min-height:100svh;align-items:flex-start;justify-content:center}
-.edits h2{max-width:13ch;line-height:1.02;letter-spacing:-.04em}
-@media(max-width:760px){.hero.snap-section,.intro.snap-section,.edits.snap-section{min-height:auto}.edits h2{line-height:1.04}}
+/* Root scrolling is owned by html, so snapping must live here rather than body. */
+html{scroll-snap-type:y mandatory;scroll-padding-top:0}
+body{scroll-snap-type:none}
+.snap-section{scroll-snap-align:start;scroll-snap-stop:always}
+.section-head h2,.feature-match h3,.gear h3,.story h3,.edits h2{font-family:'Noto Sans SC',sans-serif;letter-spacing:-.025em;line-height:1.16}
+.edits h2{max-width:13ch;line-height:1.12;letter-spacing:-.02em}
+.story-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.story{min-height:275px}
+@media(max-width:760px){html{scroll-snap-type:none}.section-head h2,.feature-match h3,.gear h3,.story h3,.edits h2{line-height:1.2}.story-grid{grid-template-columns:1fr}.story{min-height:250px}}
