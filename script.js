@@ -14,6 +14,23 @@ const learning = [
 document.querySelector('#match-list').innerHTML = matches.map(([name, type, detail]) => `<article class="list-row"><b>${name}</b><span>${type}</span><small>${detail}</small><em aria-hidden="true">↗</em></article>`).join('');
 document.querySelector('#learn-list').innerHTML = learning.map(([title, detail, source, url]) => `<article class="story reveal"><p class="story-source">${source}</p><h3>${title}</h3><p>${detail}</p><a href="${url}">阅读文章 <span aria-hidden="true">↗</span></a></article>`).join('');
 
+const menuToggle = document.querySelector('.menu-toggle');
+const siteMenu = document.querySelector('#site-menu');
+const closeMenu = () => {
+  if (!menuToggle || !siteMenu) return;
+  menuToggle.setAttribute('aria-expanded', 'false');
+  siteMenu.classList.remove('is-open');
+};
+
+menuToggle?.addEventListener('click', () => {
+  const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+  menuToggle.setAttribute('aria-expanded', String(!isOpen));
+  siteMenu.classList.toggle('is-open', !isOpen);
+});
+
+siteMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
+
 if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   if (window.ScrollToPlugin) gsap.registerPlugin(window.ScrollToPlugin);
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
