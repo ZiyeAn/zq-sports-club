@@ -34,12 +34,14 @@ if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     return nextDistance < closestDistance ? index : closest;
   }, 0);
 
+  const scrollTarget = (target) => Math.max(0, target.getBoundingClientRect().top + scrollY - (document.querySelector('.mast')?.offsetHeight || 0));
+
   const moveToSection = (index) => {
     const target = sectionTargets[Math.max(0, Math.min(index, sectionTargets.length - 1))];
     if (!target || isSectionTweening) return;
     isSectionTweening = true;
     gsap.to(window, {
-      scrollTo: { y: target, offsetY: 0 },
+      scrollTo: { y: scrollTarget(target) },
       duration: 1.12,
       ease: 'power2.inOut',
       overwrite: 'auto',
@@ -74,7 +76,7 @@ if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const target = document.querySelector(link.getAttribute('href'));
       if (!target || !desktopQuery.matches) return;
       event.preventDefault();
-      gsap.to(window, { scrollTo: { y: target, offsetY: 0 }, duration: 1.12, ease: 'power2.inOut', overwrite: 'auto' });
+      gsap.to(window, { scrollTo: { y: scrollTarget(target) }, duration: 1.12, ease: 'power2.inOut', overwrite: 'auto' });
     });
   });
 }
