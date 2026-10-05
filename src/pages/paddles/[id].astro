@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { paddles } from '../../data/site';
+export function getStaticPaths() { return paddles.map((paddle) => ({ params: { id: paddle.id }, props: { paddle } })); }
+const { paddle } = Astro.props;
+---
+<BaseLayout title={`${paddle.name} · 众祺体育`}><section class="section"><div class="gear-grid"><figure class="paddle-art"><img src={paddle.image} alt={paddle.name} /></figure><article><p class="kicker">{paddle.series} · {paddle.thickness}</p><h2>{paddle.name}</h2><p>{paddle.summary}</p><p>{paddle.traits.join(' · ')}</p><p><strong>{paddle.price}</strong></p><button class="soon" disabled>网站内购买 · 支付接入中</button></article></div></section></BaseLayout>

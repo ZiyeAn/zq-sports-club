@@ -1,0 +1,8 @@
+---
+import '../styles/global.css';
+import '../styles/comparison.css';
+import '../styles/catalogue.css';
+import '../styles/catalogue-image-overrides.css';
+const { title = '众祺匹克球俱乐部', description = '众祺匹克球俱乐部：赛事、知识、装备与同频伙伴。' } = Astro.props;
+---
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content={description} /><title>{title}</title><link rel="icon" type="image/png" href="/assets/ZQLogo.png" /></head><body><a class="skip" href="#main">跳至内容</a><header class="mast"><a class="brand" href="/"><img src="/assets/ZQLogo.png" alt="" /><span><strong>众祺体育</strong><small>PICKLEBALL CLUB · 匹克球俱乐部</small></span></a><nav aria-label="主导航"><div class="nav-links"><a href="/#matches">赛事</a><a href="/#learn">知识</a><a href="/shop">装备</a><a href="/#edits">CLUB EDITS</a></div><a class="nav-cta" href="/shop">购买球拍 ↗</a></nav></header><main id="main"><slot /></main><footer class="site-footer"><div><strong>众祺匹克球俱乐部</strong><p>训练、赛事、装备与同频伙伴，在这里持续上场。</p></div><small>© 2026 ZHONGQI SPORTS</small></footer></body></html>

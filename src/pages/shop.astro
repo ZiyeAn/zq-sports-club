@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { paddles } from '../data/site';
+---
+<BaseLayout title="球拍商店 · 众祺体育"><section class="catalogue-page"><div class="catalogue-top"><div><p class="kicker">WARPING POINT · 球拍目录</p><h1>全部球拍</h1></div><div class="catalogue-meta"><strong>17 款在售型号</strong><button type="button" class="sort-button">排序：推荐优先　⌄</button></div></div><div class="catalogue-shell"><aside class="catalogue-filter" aria-label="球拍筛选"><div class="filter-head"><h2>筛选</h2><button type="button" class="clear-filters">清除全部</button></div><details open><summary>打法</summary><div class="filter-options"><label><input type="checkbox" value="控制" data-filter="type" /> 控制</label><label><input type="checkbox" value="力量" data-filter="type" /> 力量</label><label><input type="checkbox" value="混合" data-filter="type" /> 混合</label><label><input type="checkbox" value="全场" data-filter="type" /> 全场</label><label><input type="checkbox" value="训练" data-filter="type" /> 训练</label></div></details><details open><summary>厚度</summary><div class="filter-options"><label><input type="checkbox" value="13" data-filter="thickness" /> 13.3mm</label><label><input type="checkbox" value="14" data-filter="thickness" /> 14mm</label><label><input type="checkbox" value="16" data-filter="thickness" /> 16mm</label></div></details><details><summary>系列</summary><div class="filter-options">{[...new Set(paddles.map((paddle) => paddle.series))].map((series) => <label><input type="checkbox" value={series} data-filter="series" /> {series}</label>)}</div></details><details open><summary>价格（人民币）</summary><div class="price-filter"><p>等待后台价格</p><div class="price-inputs"><label>最低价<input value="—" disabled /></label><label>最高价<input value="—" disabled /></label></div><input type="range" min="0" max="100" value="0" disabled aria-label="最低价格" /><input type="range" min="0" max="100" value="100" disabled aria-label="最高价格" /><small>实际人民币价格导入 Strapi 后，滑杆会自动启用。</small></div></details></aside><div class="catalogue-products"><div class="catalogue-toolbar"><p class="comparison-note">不知道两支拍差在哪里？最多加入 3 支，放在一起看。</p><strong id="product-count">17 款球拍</strong></div><div class="product-catalogue-grid">{paddles.map((paddle) => <article class="catalogue-card" data-type={paddle.type} data-thickness={paddle.thickness} data-series={paddle.series}><a href={`/paddles/${paddle.id}`}><img src={paddle.image} alt={paddle.name} loading="lazy" /></a><div class="catalogue-card-copy"><p>{paddle.type} · {paddle.thickness}</p><h2><a href={`/paddles/${paddle.id}`}>{paddle.name}</a></h2><span>{paddle.price}</span><button class="compare-toggle" type="button" data-paddle-id={paddle.id}>加入对比</button></div></article>)}</div></div></div></section><aside class="compare-bar" aria-live="polite" hidden><div><p class="kicker">选拍对比</p><strong class="compare-summary">还没有选择球拍</strong></div><div class="compare-bar-actions"><button class="compare-clear" type="button">清空</button><a class="nav-cta compare-link" href="/compare">开始对比 ↗</a></div></aside><script is:inline>
+  const comparisonKey = 'zq-paddle-comparison';
+  const maximum = 3;
+  const getIds = () => { try { return JSON.parse(localStorage.getItem(comparisonKey) || '[]'); } catch { return []; } };
+  const saveIds = (ids) => localStorage.setItem(comparisonKey, JSON.stringify(ids));
+  const update = () => {
+    const ids = getIds();
+    document.querySelectorAll('.compare-toggle').forEach((button) => {
+      const selected = ids.includes(button.dataset.paddleId);
+      button.textContent = selected ? '移出对比' : '加入对比';
+      button.classList.toggle('is-selected', selected);
+      button.disabled = !selected && ids.length >= maximum;
+    });
+    const bar = document.querySelector('.compare-bar');
+    const summary = document.querySelector('.compare-summary');
+    bar.hidden = ids.length === 0;
+    summary.textContent = `已选 ${ids.length} 支球拍${ids.length < 2 ? '，再选一支开始比较' : ''}`;
+  };
+  document.querySelectorAll('.compare-toggle').forEach((button) => button.addEventListener('click', () => {
+    const id = button.dataset.paddleId;
+    const ids = getIds();
+    const next = ids.includes(id) ? ids.filter((item) => item !== id) : [...ids, id].slice(0, maximum);
+    saveIds(next); update();
+  }));
+  document.querySelector('.compare-clear').addEventListener('click', () => { saveIds([]); update(); });
+  const checks = [...document.querySelectorAll('[data-filter]')];
+  const cards = [...document.querySelectorAll('.catalogue-card')];
+  const count = document.querySelector('#product-count');
+  const applyFilters = () => {
+    const selected = (name) => checks.filter((check) => check.dataset.filter === name && check.checked).map((check) => check.value);
+    const types = selected('type'); const thicknesses = selected('thickness'); const series = selected('series');
+    let visible = 0;
+    cards.forEach((card) => {
+      const match = (!types.length || types.some((item) => card.dataset.type.includes(item))) && (!thicknesses.length || thicknesses.some((item) => card.dataset.thickness.includes(item))) && (!series.length || series.includes(card.dataset.series));
+      card.hidden = !match; if (match) visible += 1;
+    });
+    count.textContent = `${visible} 款球拍`;
+  };
+  checks.forEach((check) => check.addEventListener('change', applyFilters));
+  document.querySelector('.clear-filters').addEventListener('click', () => { checks.forEach((check) => check.checked = false); applyFilters(); });
+  update();
+</script></BaseLayout>

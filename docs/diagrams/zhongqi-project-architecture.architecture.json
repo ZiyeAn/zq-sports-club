@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "众祺匹克球俱乐部 · 项目全景架构",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "animation": "none",
+    "viewBox": [1380, 960]
+  },
+  "components": [
+    { "id": "operators", "type": "external", "label": "运营团队", "sublabel": "编辑 · 商品运营", "pos": [30, 190], "size": [170, 82] },
+    { "id": "strapi", "type": "backend", "label": "Strapi 中文后台", "sublabel": "内容、商品、价格、购买入口", "pos": [230, 190], "size": [180, 82] },
+    { "id": "publish", "type": "messagebus", "label": "发布触发器", "sublabel": "只读取已发布内容", "pos": [450, 190], "size": [150, 82] },
+    { "id": "astro", "type": "backend", "label": "Astro 静态构建", "sublabel": "生成可公开访问的网站", "pos": [640, 190], "size": [170, 82] },
+    { "id": "cos", "type": "cloud", "label": "腾讯云 COS", "sublabel": "网站文件 · 图片 · 媒体", "pos": [860, 145], "size": [180, 82] },
+    { "id": "edge", "type": "cloud", "label": "EdgeOne / CDN", "sublabel": "中国大陆加速分发", "pos": [860, 300], "size": [180, 82] },
+    { "id": "visitors", "type": "external", "label": "中国大陆访客", "sublabel": "学习 · 选拍 · 浏览 · 购买", "pos": [1120, 300], "size": [180, 82] },
+    { "id": "site", "type": "frontend", "label": "众祺网站", "sublabel": "赛事 · 知识 · 术语 · 商城 · Club Edits", "pos": [200, 510], "size": [260, 92] },
+    { "id": "matcher", "type": "backend", "label": "选拍攻略", "sublabel": "4 题匹配 · 3 支建议 · 再调一点", "pos": [560, 510], "size": [240, 92] },
+    { "id": "checkout", "type": "security", "label": "网站内购买", "sublabel": "商品详情 · 人民币价格 · 下单", "pos": [920, 510], "size": [230, 92] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "腾讯云中国大陆区域", "wraps": ["strapi", "publish", "astro", "cos", "edge"], "pad": 28 },
+    { "kind": "security-group", "label": "仅受邀账号进入", "wraps": ["strapi"], "pad": 15 }
+  ],
+  "connections": [
+    { "from": "operators", "to": "strapi", "label": "编辑与发布", "variant": "emphasis", "labelAt": [215, 286] },
+    { "from": "strapi", "to": "publish", "label": "发布事件", "variant": "emphasis", "labelAt": [430, 286] },
+    { "from": "publish", "to": "astro", "label": "构建", "variant": "emphasis" },
+    { "from": "astro", "to": "cos", "label": "上传静态文件", "variant": "emphasis", "labelAt": [835, 286] },
+    { "from": "cos", "to": "edge", "label": "分发与刷新缓存", "route": "orthogonal-v" },
+    { "from": "edge", "to": "visitors", "label": "HTTPS", "variant": "emphasis", "labelAt": [1418, 396] },
+    { "from": "visitors", "to": "site", "label": "访问网站", "route": "orthogonal-v", "fromSide": "bottom", "toSide": "top" },
+    { "from": "site", "to": "matcher", "label": "不确定该选哪支？", "variant": "dashed" },
+    { "from": "site", "to": "checkout", "label": "浏览商品与购买", "variant": "emphasis", "fromSide": "bottom", "toSide": "bottom", "via": [[330, 650], [1035, 650]], "labelAt": [680, 666] },
+    { "from": "matcher", "to": "checkout", "label": "推荐后购买", "variant": "emphasis" }
+  ],
+  "cards": [
+    { "dot": "slate", "title": "内容如何带来购买", "items": ["技术文章底部直接展示 2–3 支相关球拍", "文章解释打法与球拍特性的关系", "用户无需离开文章，就能进入商品详情和网站内购买"] },
+    { "dot": "slate", "title": "选拍攻略如何降低门槛", "items": ["4 个简单问题，不要求用户先理解复杂参数", "输出最适合、更稳的选择、更进攻的选择", "“再调一点”只改变偏好权重；雷达图负责展示，不让用户拖拽"] },
+    { "dot": "slate", "title": "上线与运营原则", "items": ["后台发布后重新生成静态站；失败不覆盖上一版", "所有关键字体、脚本与图片放在本地或 COS", "正式域名、ICP 备案与后台账号由用户方准备"] }
+  ]
+}

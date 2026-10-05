@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">众祺体育系统架构图</title>
+  <desc id="desc">运营团队通过 Strapi 后台发布内容，由 Astro 构建并通过腾讯云 COS 与 EdgeOne 分发给大陆访客；访客在众祺网站中浏览商品或使用选拍攻略，最终在网站内购买。</desc>
+  <style>
+    text{font-family:"PingFang SC","Noto Sans SC",Arial,sans-serif;fill:#111}.eyebrow{font-size:13px;font-weight:700;letter-spacing:1.4px}.heading{font-size:26px;font-weight:800;letter-spacing:-1px}.sub{font-size:14px;fill:#555}.tiny{font-size:12px;fill:#555}.node-title{font-size:19px;font-weight:800}.node-copy{font-size:13px;fill:#4d4d49}.tag{font-size:12px;font-weight:700}.fine{stroke:#111;stroke-width:1.5;fill:none}.line{stroke:#111;stroke-width:2;fill:none;marker-end:url(#arrow)}.accent{stroke:#b7ee3a;stroke-width:2.5;fill:none;marker-end:url(#arrowGreen)}
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L8 4.5L0 9Z" fill="#111"/></marker>
+    <marker id="arrowGreen" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L8 4.5L0 9Z" fill="#b7ee3a"/></marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#f6f5ef"/>
+  <g transform="translate(58 24)"><circle cx="20" cy="20" r="18" fill="#111"/><path d="M8 20c8-11 16-11 24 0-8 11-16 11-24 0Zm6 0c4 5 8 5 12 0-4-5-8-5-12 0Z" fill="#f6f5ef"/><text x="52" y="25" class="heading">众祺体育</text><text x="53" y="46" class="eyebrow">PICKLEBALL CLUB　·　系统架构</text></g>
+  <rect x="1385" y="25" width="158" height="42" fill="#d7ef51" stroke="#111" stroke-width="1.5"/><text x="1402" y="51" class="eyebrow">内容与购买系统</text>
+  <line x1="0" y1="91" x2="1600" y2="91" class="fine"/>
+
+  <rect x="280" y="132" width="1020" height="385" rx="12" fill="#fff" stroke="#111" stroke-width="1.5" stroke-dasharray="8 7"/>
+  <rect x="302" y="145" width="162" height="29" fill="#d7ef51"/><text x="315" y="165" class="tag">腾讯云中国大陆区域</text>
+  <rect x="310" y="194" width="290" height="193" rx="8" fill="#f6f5ef" stroke="#111" stroke-width="1.3" stroke-dasharray="5 5"/>
+  <rect x="326" y="207" width="130" height="24" fill="#111"/><text x="337" y="224" style="fill:#fff" class="tag">仅受邀账号进入</text>
+
+  <rect x="38" y="250" width="210" height="94" rx="8" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="64" y="286" class="node-title">运营团队</text><text x="64" y="314" class="node-copy">编辑　·　商品运营</text>
+  <rect x="336" y="250" width="238" height="94" rx="8" fill="#111"/>
+  <text x="363" y="286" style="fill:#fff" class="node-title">Strapi 中文后台</text><text x="363" y="314" style="fill:#eee" class="node-copy">内容、商品、价格、购买入口</text>
+  <rect x="640" y="250" width="180" height="94" rx="8" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="670" y="286" class="node-title">发布触发器</text><text x="670" y="314" class="node-copy">只读取已发布内容</text>
+  <rect x="880" y="250" width="230" height="94" rx="8" fill="#111"/>
+  <text x="910" y="286" style="fill:#fff" class="node-title">Astro 静态构建</text><text x="910" y="314" style="fill:#eee" class="node-copy">生成公开访问的网站</text>
+  <rect x="1160" y="192" width="112" height="94" rx="8" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="1188" y="228" class="node-title">COS</text><text x="1180" y="254" class="node-copy">网站与媒体</text>
+  <rect x="1160" y="363" width="112" height="94" rx="8" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="1172" y="399" class="node-title">EdgeOne</text><text x="1184" y="425" class="node-copy">CDN 分发</text>
+  <rect x="1350" y="363" width="210" height="94" rx="8" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="1376" y="399" class="node-title">中国大陆访客</text><text x="1376" y="427" class="node-copy">学习 · 选拍 · 浏览 · 购买</text>
+
+  <path d="M248 297H336" class="accent"/><text x="264" y="282" class="tiny">编辑与发布</text>
+  <path d="M574 297H640" class="accent"/><text x="580" y="367" class="tiny">发布事件</text>
+  <path d="M820 297H880" class="accent"/><text x="835" y="282" class="tiny">构建</text>
+  <path d="M1110 297H1135Q1160 297 1160 239" class="accent"/><text x="1118" y="360" class="tiny">上传静态文件</text>
+  <path d="M1216 286V363" class="line"/><text x="1227" y="337" class="tiny">分发与刷新缓存</text>
+  <path d="M1272 410H1350" class="accent"/><text x="1283" y="395" class="tiny">HTTPS</text>
+
+  <path d="M1455 457V565H420V640" class="line"/><text x="879" y="550" class="tiny">访问网站</text>
+  <text x="100" y="570" class="eyebrow">公开网站中的两条购买路径</text>
+  <rect x="260" y="640" width="330" height="112" rx="8" fill="#111"/>
+  <text x="290" y="682" style="fill:#fff" class="node-title">众祺网站</text><text x="290" y="711" style="fill:#eee" class="node-copy">赛事 · 知识 · 术语 · 商城 · Club Edits</text>
+  <rect x="720" y="640" width="285" height="112" rx="8" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="750" y="682" class="node-title">选拍攻略</text><text x="750" y="711" class="node-copy">4 题匹配 · 3 支建议 · 再调一点</text>
+  <rect x="1165" y="640" width="300" height="112" rx="8" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="1195" y="682" class="node-title">网站内购买</text><text x="1195" y="711" class="node-copy">商品详情 · 人民币价格 · 下单</text>
+  <path d="M590 696H720" class="line" stroke-dasharray="6 5"/><text x="615" y="678" class="tiny">不确定选哪支？</text>
+  <path d="M1005 696H1165" class="accent"/><text x="1050" y="678" class="tiny">推荐后购买</text>
+  <path d="M425 752V830Q425 862 457 862H1315Q1315 862 1315 752" class="accent"/><text x="784" y="886" class="tiny">浏览商品与购买</text>
+  <line x1="100" y1="930" x2="1500" y2="930" class="fine"/>
+  <text x="100" y="965" class="sub">部署保障大陆访问；内容帮助理解；选拍降低决策门槛；交易最终在众祺网站内完成。</text>
+</svg>

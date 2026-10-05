@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">众祺匹克球俱乐部：从学习到选拍</title>
+  <desc id="desc">一张黑白极简结构图，说明如何通过知识内容、商城和选拍攻略，降低用户的选拍难度和销售重复解释。</desc>
+  <style>
+    text { font-family: "PingFang SC", "Noto Sans SC", Arial, sans-serif; fill: #111; }
+    .eyebrow { font-size: 18px; font-weight: 600; letter-spacing: 3px; }
+    .headline { font-size: 54px; font-weight: 700; letter-spacing: -2px; }
+    .lead { font-size: 21px; fill: #444; }
+    .label { font-size: 16px; font-weight: 700; letter-spacing: 2px; }
+    .box-title { font-size: 27px; font-weight: 700; letter-spacing: -1px; }
+    .copy { font-size: 18px; fill: #333; }
+    .center-title { font-size: 31px; font-weight: 700; letter-spacing: -1px; }
+    .center-copy { font-size: 19px; fill: #333; }
+    .path-title { font-size: 22px; font-weight: 700; }
+    .path-copy { font-size: 16px; fill: #444; }
+    .footer { font-size: 18px; fill: #333; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#111"/></marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#fff"/>
+  <text x="100" y="88" class="eyebrow">众祺体育 · 内容与选拍逻辑</text>
+  <text x="100" y="158" class="headline">用户少猜一点，销售少解释一点。</text>
+  <text x="100" y="202" class="lead">先把打法讲明白，再把适合的球拍放到用户眼前。</text>
+
+  <line x1="100" y1="250" x2="1500" y2="250" stroke="#111" stroke-width="2"/>
+
+  <text x="160" y="330" class="label">01 / 原始问题</text>
+  <rect x="100" y="360" width="360" height="200" fill="#fff" stroke="#111" stroke-width="2"/>
+  <text x="132" y="414" class="box-title">用户不知道怎么选</text>
+  <text x="132" y="456" class="copy">入门、进阶、竞赛拍有什么不同？</text>
+  <text x="132" y="488" class="copy">控制、力量、容错该怎么取舍？</text>
+  <text x="132" y="530" class="copy">贵一点，真的更适合我吗？</text>
+
+  <line x1="460" y1="460" x2="610" y2="460" stroke="#111" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="650" y="330" class="label">02 / 众祺的方法</text>
+  <rect x="610" y="360" width="380" height="200" fill="#111"/>
+  <text x="642" y="418" fill="#fff" class="center-title">先讲打法，再聊球拍</text>
+  <text x="642" y="458" fill="#fff" class="center-copy">先知道自己在练什么，</text>
+  <text x="642" y="490" fill="#fff" class="center-copy">再去看什么样的拍子能帮上忙。</text>
+  <line x1="642" y1="515" x2="958" y2="515" stroke="#fff" stroke-width="1"/>
+  <text x="642" y="542" fill="#fff" class="center-copy">把销售经验，变成用户看得懂的内容。</text>
+
+  <line x1="990" y1="460" x2="1140" y2="460" stroke="#111" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="1180" y="330" class="label">03 / 最终结果</text>
+  <rect x="1140" y="360" width="360" height="200" fill="#fff" stroke="#111" stroke-width="2"/>
+  <text x="1172" y="414" class="box-title">用户自己也能做判断</text>
+  <text x="1172" y="456" class="copy">知道为什么这支拍适合自己。</text>
+  <text x="1172" y="488" class="copy">看懂取舍，再看详情或购买。</text>
+  <text x="1172" y="530" class="copy">团队少讲重复的话。</text>
+
+  <line x1="800" y1="560" x2="800" y2="642" stroke="#111" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="100" y="675" class="label">三条独立路径，各做各的事</text>
+
+  <rect x="100" y="710" width="430" height="150" fill="#fff" stroke="#111" stroke-width="2"/>
+  <text x="130" y="757" class="path-title">知识内容</text>
+  <text x="130" y="794" class="path-copy">解释技术动作与球拍特性的关系。</text>
+  <text x="130" y="824" class="path-copy">文章底部直接放相关球拍。</text>
+
+  <rect x="585" y="710" width="430" height="150" fill="#fff" stroke="#111" stroke-width="2"/>
+  <text x="615" y="757" class="path-title">商城</text>
+  <text x="615" y="794" class="path-copy">浏览、比较产品，查看球拍详情。</text>
+  <text x="615" y="824" class="path-copy">决定后，前往京东购买。</text>
+
+  <rect x="1070" y="710" width="430" height="150" fill="#fff" stroke="#111" stroke-width="2"/>
+  <text x="1100" y="757" class="path-title">选拍攻略</text>
+  <text x="1100" y="794" class="path-copy">四个简单问题，给出三支建议。</text>
+  <text x="1100" y="824" class="path-copy">少量偏好微调，雷达图只负责说明。</text>
+
+  <line x1="100" y1="916" x2="1500" y2="916" stroke="#111" stroke-width="2"/>
+  <text x="100" y="958" class="footer">内容不是为了让网站看起来更热闹，而是为了让用户更容易做出购买决定。</text>
+</svg>

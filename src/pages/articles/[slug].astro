@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { learningArticles, paddles } from '../../data/site';
+const bodies: Record<string, string[]> = {
+  'two-bounce': ['发球后，接发球方必须先让球落地；回球方也必须让球落地。两次落地完成后，双方才能在合规位置凌空截击。', '这条规则让发球方不能立刻冲到网前，也让接发球方拥有更完整的回球空间。刚开始练习时，先把“发球、回球、两次落地”当成固定节奏，会比急着抢网更容易建立稳定回合。'],
+  'kitchen-line': ['非截击区常被叫作厨房。你可以走进这个区域，也可以在里面击打已经落地的球；限制只针对凌空截击。', '练习时重点不是刻意躲开厨房线，而是培养击球后能否保持平衡的意识。尤其在网前，稳定重置通常比强行加速更有价值。'],
+  'ready-position': ['准备姿势的重点是把球拍放在胸前附近、让肘部自然向前，并缩短引拍。这样做不是为了姿势看起来标准，而是为了减少来球时的反应距离。', '当你发现网前总来不及，不妨先检查自己是不是把拍子放得太低、动作做得太大。更短、更直接的动作，往往会带来更稳定的触球。']
+};
+export function getStaticPaths() { return learningArticles.map((article) => ({ params: { slug: article.slug }, props: { article } })); }
+const { article } = Astro.props;
+const related = article.slug === 'ready-position' ? [paddles[1], paddles[2]] : [paddles[0], paddles[1]];
+---
+<BaseLayout title={`${article.title} · 众祺体育`}><article class="section"><div class="section-head"><div><p class="kicker">{article.source}</p><h2>{article.title}</h2></div><p>{article.summary}</p></div><div style="max-width:760px;font-size:18px;line-height:2">{bodies[article.slug].map((paragraph) => <p>{paragraph}</p>)}</div></article><section class="section"><div class="section-head"><h2>练这项能力，<br />适合看看这些球拍。</h2><p>这不是强制跳转；它只是把当前训练主题和球拍特性放在同一个阅读页面里。</p></div><div class="story-grid">{related.map((paddle) => <article class="story"><p class="kicker">{paddle.traits.join(' · ')}</p><h3>{paddle.name}</h3><p>{paddle.summary}</p><a href={`/paddles/${paddle.id}`}>查看详情 ↗</a></article>)}</div></section></BaseLayout>

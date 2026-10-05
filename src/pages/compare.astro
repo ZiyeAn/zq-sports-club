@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { paddles } from '../data/site';
+const catalogue = JSON.stringify(paddles);
+---
+<BaseLayout title="选拍对比 · 众祺体育"><section class="section"><div class="section-head"><div><p class="kicker">PRODUCT COMPARISON</p><h2>把几支拍<br />放在一起看。</h2></div><p>比较不是替你做决定，而是把打法、手感和取舍摆到同一个视图里。</p></div><div id="comparison-root" class="comparison-root"><p>正在读取你选择的球拍。</p></div><p class="comparison-guide">还不确定应该看什么？<a href="/shop">返回商城，开始选拍攻略</a>。</p></section><script define:vars={{ catalogue }}>
+  const key = 'zq-paddle-comparison';
+  const allPaddles = JSON.parse(catalogue);
+  const root = document.querySelector('#comparison-root');
+  const ids = JSON.parse(localStorage.getItem(key) || '[]');
+  const selected = ids.map((id) => allPaddles.find((paddle) => paddle.id === id)).filter(Boolean);
+  const remove = (id) => { const next = ids.filter((item) => item !== id); localStorage.setItem(key, JSON.stringify(next)); location.reload(); };
+  if (selected.length < 2) {
+    root.innerHTML = `<div class="empty-compare"><h3>至少选 2 支球拍再开始比较。</h3><p>回到商城，在想看的球拍上点击“加入对比”。</p><a class="soon" href="/shop">返回商城 ↗</a></div>`;
+  } else {
+    root.innerHTML = `<div class="comparison-table"><div class="comparison-labels"><span>球拍</span><span>定位</span><span>厚度</span><span>适合打法</span><span>为什么适合</span><span>购买</span></div>${selected.map((paddle) => `<article class="comparison-card"><button class="remove-compare" data-id="${paddle.id}">移除 ×</button><img src="${paddle.image}" alt="${paddle.name}"><h3>${paddle.name}</h3><p>${paddle.series}</p><dl><dt>定位</dt><dd>${paddle.type}</dd><dt>厚度</dt><dd>${paddle.thickness}</dd><dt>适合打法</dt><dd>${paddle.traits.join(' · ')}</dd><dt>为什么适合</dt><dd>${paddle.summary}</dd></dl><a class="soon" href="/paddles/${paddle.id}">查看详情 ↗</a></article>`).join('')}</div>`;
+    document.querySelectorAll('.remove-compare').forEach((button) => button.addEventListener('click', () => remove(button.dataset.id)));
+  }
+</script></BaseLayout>

@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { learningArticles, matches } from '../data/site';
+---
+<BaseLayout>
+  <section class="hero"><div class="hero-copy"><p>成人玩家的匹克球社群</p><h1>FIND<br />YOUR<br />PACE</h1><a href="#matches">从全球赛场开始 ↓</a></div><div class="hero-court" aria-label="抽象匹克球场图形"><i aria-hidden="true"></i><strong>PLAY<br />WITH<br />INTENT</strong><span class="ball" aria-hidden="true"></span></div></section>
+  <section class="intro"><p>众祺聚焦你真正会用到的内容：看懂比赛、练好技术、选对装备。</p><button class="soon" disabled>加入俱乐部 · 即将开放</button></section>
+  <section id="matches" class="section"><div class="section-head"><h2>全球赛事</h2><p>值得关注的巡回赛、公开赛与职业对决。</p></div><div class="match-layout"><article class="feature-match"><p class="kicker">MATCH DESK</p><h3>下一场值得看的比赛，从这里开始。</h3><p>赛事信息将由运营团队依据公开官方来源持续编辑更新。</p></article><div>{matches.map((match) => <article class="list-row"><b>{match.name}</b><span>{match.type}</span><small>{match.detail}</small></article>)}</div></div></section>
+  <section id="learn" class="section ink"><div class="section-head"><h2>匹克球知识</h2><p>从第一拍到更稳定的打法。每篇技术内容都会说明它和球拍特性的关系。</p></div><div class="story-grid">{learningArticles.map((article) => <article class="story"><p class="kicker">{article.source}</p><h3>{article.title}</h3><p>{article.summary}</p><a href={`/articles/${article.slug}`}>阅读文章 ↗</a></article>)}</div></section>
+  <section id="gear" class="section"><div class="section-head"><h2>为你的打法选择球拍</h2><p>不知道该从哪支开始？先看打法，再看球拍。</p></div><div class="gear-grid"><figure class="paddle-art"><img src="/assets/warping-point-paddle.png" alt="Warping Point 匹克球拍" /></figure><article><p class="kicker">WARPING POINT · 17 款</p><h3>装备不是答案。适合你的打法，才是。</h3><p>商城与选拍攻略将由运营团队持续维护产品信息、人民币价格与网站内购买入口。</p><a class="soon" href="/shop">浏览全部球拍 ↗</a></article></div></section>
+  <section id="edits" class="edits"><p class="kicker">CLUB EDITS</p><h2>周边，为每一次上场留下标记。</h2><button class="soon" disabled>即将开放</button></section>
+</BaseLayout>
